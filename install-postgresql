@@ -1,7 +1,16 @@
 #!/bin/bash
-rpm -Uvh https://yum.postgresql.org/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-yum install postgresql11-server
+rpm -Uvh https://yum.postgresql.org/11/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm -y
+yum install postgresql11-server -y
 /usr/pgsql-11/bin/postgresql-11-setup initdb
 systemctl enable postgresql-11.service
 systemctl start postgresql-11.service
 systemctl status postgresql-11.service
+
+#install pgpool2
+yum install http://www.pgpool.net/yum/rpms/3.6/redhat/rhel-7-x86_64/pgpool-II-release-3.6-1.noarch.rpm -y
+yum install pgpool-II-pg11 -y
+yum install pgpool-II-pg11-devel -y
+yum install pgpool-II-pg11-extensions -y
+systemctl restart  pgpool.service
+systemctl status   pgpool.service
+
