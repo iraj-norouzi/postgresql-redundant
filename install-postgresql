@@ -13,4 +13,7 @@ yum install pgpool-II-pg11-devel -y
 yum install pgpool-II-pg11-extensions -y
 systemctl restart  pgpool.service
 systemctl status   pgpool.service
-
+#test pgpool
+pgpool -n -d -f /etc/pgpool-II/pgpool.conf
+psql -h pgpool-db -p 9999 -U postgres -d postgres
+show pool_nodes
